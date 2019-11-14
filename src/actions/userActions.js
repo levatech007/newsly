@@ -1,23 +1,18 @@
 import { userConstants } from '../constants';
+import { userService } from '../services';
 
 export const userActions = {
   login,
   logout
 };
 
-function login(userData) {
-  let user = JSON.stringify(userData);
+function login(email, token) {
   return dispatch => {
-
-    localStorage.setItem('user', user)
-      .then( user => {
+      let user = userService.login(email, token)
+      if(Object.keys(user).length)
         dispatch(success(user));
-        // history.push('/');
-      },
-      error => {
-            dispatch(failure(error));
-        }
-      );
+      else
+        dispatch(failure('Something went wrong!'));
     };
 
     function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
@@ -25,6 +20,6 @@ function login(userData) {
 }
 
 function logout() {
-  localStorage.removeItem('user');
+  userService.logout()
   return { type: userConstants.LOGOUT };
 }
