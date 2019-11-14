@@ -1,0 +1,32 @@
+nav {
+  /* display: inline-block; */
+  /* margin: 0 auto; */
+  text-align: center;
+}
+
+nav, button {
+  font-size: 20px;
+}
+
+nav ul, nav li {
+  display: inline-block;
+  padding-left: 0;
+}
+
+ul a {
+  text-decoration: none;
+  color: #000000;
+  margin-right: 30px;
+}
+
+li:first-child {
+  font-weight: bolder;
+}
+
+nav button {
+  margin: 0;
+  padding: 0;
+  background-color: none;
+  border: none;
+  cursor: pointer;
+}
