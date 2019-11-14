@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import LoginPage from './containers/LoginPage.js';
+import NewsPage from './containers/NewsPage.js';
 import './App.css';
 
 class App extends Component {
-  // componentDidMount() {
-    // let user = {email: 'test@test.com', token: 'kje9823bwj'}
-    // localStorage.setItem('user', JSON.stringify(user))
-    // localStorage.removeItem('user')
-  // }
 
   render() {
     return (
       <div>
         {
-          this.props.login.loggedIn ? <p>User existst</p> : <p>user does not exist</p>
+          this.props.login.loggedIn ? <NewsPage /> : <LoginPage />
         }
       </div>
     );
