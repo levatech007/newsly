@@ -14,15 +14,19 @@ export const articleActions = {
 function getTopArticles() {
   // get top articles
   return dispatch => {
+    dispatch(request());
+
     let articles = articlesService.getTopArticles()
     .then(articles => {
       return articles.articles
     })
     .then(topArticles => {
-      console.log(topArticles)
       dispatch(success(topArticles));
     })
-
+    .catch(error => {
+      console.log(error);
+    })
+    function request() { return { type: articleConstants.GET_ARTICLES_REQUEST } }
     function success(articles) { return { type: articleConstants.GET_TOP_ARTICLES, articles } }
   }
 }
