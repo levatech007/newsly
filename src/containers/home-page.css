@@ -1,0 +1,17 @@
+.container {
+  width: 65%;
+  max-width: 900px;
+  margin: 0 auto;
+  margin-top: 50px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  background: #f4f4f4;
+  padding: 50px;
+  -webkit-box-shadow: 13px 10px 33px 6px rgba(0,0,0,0.75);
+  -moz-box-shadow: 13px 10px 33px 6px rgba(0,0,0,0.75);
+  box-shadow: 13px 10px 33px 6px rgba(0,0,0,0.75);
+}
+
+.container h1 {
+  text-align: center;
+}
