@@ -5,7 +5,8 @@ import { articlesService } from '../services';
 export const articleActions = {
   getTopArticles,
   getSearchedArticles,
-  getSelectedArticle
+  getSelectedArticle,
+  switchToArticleFullView
 };
 
 // GET_TOP_ARTICLES
@@ -16,7 +17,7 @@ function getTopArticles() {
   return dispatch => {
     dispatch(request());
 
-    let articles = articlesService.getTopArticles()
+    articlesService.getTopArticles()
     .then(articles => {
       return articles.articles
     })
@@ -37,4 +38,8 @@ function getSearchedArticles() {
 
 function getSelectedArticle() {
   // get full article the user selects
+}
+
+function switchToArticleFullView(article) {
+  return { type: articleConstants.SHOW_ARTICLE_FULL_VIEW, article }
 }

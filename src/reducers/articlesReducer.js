@@ -16,6 +16,16 @@ export function articles(state = {}, action) {
       return {};
     case articleConstants.GET_SELECTED_ARTICLE:
       return {};
+    case articleConstants.SHOW_ARTICLE_FULL_VIEW:
+      return {
+        isInFullView: true,
+        articles: action.article
+      };
+    case articleConstants.CLOSE_ARTICLE_FULL_VIEW:
+      return {
+        isInFullView: false,
+        articles: action.articles
+      };
     default:
       return state;
   }
