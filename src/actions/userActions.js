@@ -1,5 +1,6 @@
 import { userConstants } from '../constants';
 import { userService } from '../services';
+import { history } from '../helpers';
 
 export const userActions = {
   login,
@@ -9,10 +10,12 @@ export const userActions = {
 function login(email, token) {
   return dispatch => {
       let user = userService.login(email, token)
-      if(Object.keys(user).length)
+      if(Object.keys(user).length) {
         dispatch(success(user));
-      else
+        history.push('/');
+      } else {
         dispatch(failure('Something went wrong!'));
+      };
     };
 
     function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
@@ -21,5 +24,6 @@ function login(email, token) {
 
 function logout() {
   userService.logout()
+  history.push('/');
   return { type: userConstants.LOGOUT };
 }
