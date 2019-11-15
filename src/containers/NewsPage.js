@@ -1,38 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { articleActions } from '../actions';
-import NewsArticlePreview from '../components/NewsArticles/NewsArticlePreview.js';
 import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner.js';
-import './news-page.css';
+import NewsArticleList from '../components/NewsArticles/NewsArticleList.js';
+import NewsArticleFull from '../components/NewsArticles/NewsArticleFull.js';
 
 class NewsPage extends Component {
+  constructor() {
+    super();
+    this.showFullArticleView = this.showFullArticleView.bind(this);
+  }
 
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(articleActions.getTopArticles());
+    this.props.dispatch(articleActions.getTopArticles());
+  }
+
+  showFullArticleView(article) {
+    this.props.dispatch(articleActions.switchToArticleFullView(article));
   }
 
   render() {
-    console.log(this.props.articles.isLoading)
     return(
-      <div className="news-container">
+      <div>
         { this.props.articles.isLoading && <LoadingSpinner /> }
-        <h1>TODAY'S TOP HEADLINES</h1>
-        { this.props.articles.articles &&
-          <ul>
-            {
-              this.props.articles.articles.map((article, idx) => {
-                return(
-                  <NewsArticlePreview
-                    key={ idx }
-                    article={ article }
-                    isTopArticle={ idx ? false : true }
-                  />
-                )
-              })
-            }
-          </ul>
-      }
+
+        { this.props.articles.articles && this.props.articles.isInFullView &&
+          <NewsArticleFull
+            article={ this.props.articles.articles }
+          />
+        }
+
+        { this.props.articles.articles && !this.props.articles.isInFullView &&
+          <NewsArticleList
+            pageTitle="TODAY'S TOP HEADLINES"
+            articles={ this.props.articles.articles }
+            onShowArticle={ this.showFullArticleView }
+          />
+        }
       </div>
     );
   }
