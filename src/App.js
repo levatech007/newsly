@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { userActions } from './actions/userActions.js';
+import { userActions } from './actions';
 import NavBar from './components/NavBar/NavBar.js';
 import LoginPage from './containers/LoginPage.js';
 import HomePage from './containers/HomePage.js';
