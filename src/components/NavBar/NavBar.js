@@ -27,7 +27,7 @@ class NavBar extends Component {
             })
           }
         </ul>
-        <button onClick={ this.handleLogout }>Log Out</button>
+        { this.props.loggedIn && <button onClick={ this.handleLogout }>Log Out</button> }
       </nav>
     );
   }
