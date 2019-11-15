@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { articleActions } from '../actions';
 import NewsArticlePreview from '../components/NewsArticles/NewsArticlePreview.js';
+import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner.js';
 import './news-page.css';
 
 class NewsPage extends Component {
@@ -12,8 +13,10 @@ class NewsPage extends Component {
   }
 
   render() {
+    console.log(this.props.articles.isLoading)
     return(
       <div className="news-container">
+        { this.props.articles.isLoading && <LoadingSpinner /> }
         <h1>TODAY'S TOP HEADLINES</h1>
         { this.props.articles.articles &&
           <ul>

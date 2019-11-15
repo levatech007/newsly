@@ -1,5 +1,6 @@
 .news-container {
-  width: 75%;
+  width: 65%;
+  max-width: 900px;
   margin: 0 auto;
   margin-top: 50px;
   border-top-right-radius: 5px;
