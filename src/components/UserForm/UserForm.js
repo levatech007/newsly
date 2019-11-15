@@ -9,6 +9,7 @@ class UserForm extends Component {
       token: '',
     }
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleCancelForm = this.handleCancelForm.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
 
@@ -26,6 +27,10 @@ class UserForm extends Component {
     } else {
       console.log("Missing value")
     }
+  }
+
+  handleCancelForm() {
+    this.props.cancel()
   }
 
   render() {
@@ -57,6 +62,14 @@ class UserForm extends Component {
             type="submit"
           >{ this.props.buttonText }
           </button>
+          {
+            this.props.cancel &&
+            <button
+              className="btn cancel"
+              onClick={ this.handleCancelForm }
+            >Cancel
+            </button>
+          }
         <div className="small-text">
           <p>Don't have a token? Sign up for one <a
               href="https://newsapi.org/register"
