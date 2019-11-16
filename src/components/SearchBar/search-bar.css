@@ -1,0 +1,24 @@
+.search-bar {
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.search-bar input {
+  width: 75%;
+  border-radius: 5px;
+  border: none;
+  vertical-align: top;
+}
+
+.search-btn {
+  background: none;
+  border: none;
+  width: 20%;
+  height: 37px;
+  cursor: pointer;
+}
+
+.search-btn img {
+  height: 100%;
+}
