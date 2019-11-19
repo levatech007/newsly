@@ -5,7 +5,6 @@ import { articlesService } from '../services';
 export const articleActions = {
   getTopArticles,
   getSearchedArticles,
-  getSelectedArticle,
   switchToArticleFullView
 };
 
@@ -26,18 +25,31 @@ function getTopArticles() {
     })
     .catch(error => {
       console.log(error);
-    })
+    });
     function request() { return { type: articleConstants.GET_ARTICLES_REQUEST } }
     function success(articles) { return { type: articleConstants.GET_TOP_ARTICLES, articles } }
   }
 }
 
-function getSearchedArticles() {
+function getSearchedArticles(phrase) {
   // get articles that match user search input
-}
+  return dispatch => {
+    dispatch(request());
+    articlesService.getSearchedArticles(phrase)
+    .then(articles => {
+      return articles.articles
+    })
+    .then(searchedArticles => {
+      dispatch(success(searchedArticles));
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  function request() { return { type: articleConstants.GET_ARTICLES_REQUEST } }
+  function success(articles) { return { type: articleConstants.GET_TOP_ARTICLES, articles } }
 
-function getSelectedArticle() {
-  // get full article the user selects
+  }
+
 }
 
 function switchToArticleFullView(article) {

@@ -13,9 +13,10 @@ export function articles(state = {}, action) {
         articles: action.articles
       };
     case articleConstants.GET_SEARCHED_ARTICLES:
-      return {};
-    case articleConstants.GET_SELECTED_ARTICLE:
-      return {};
+    return {
+      isLoading: false,
+      articles: action.articles
+    };
     case articleConstants.SHOW_ARTICLE_FULL_VIEW:
       return {
         isInFullView: true,

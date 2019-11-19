@@ -1,30 +1,35 @@
 export const articlesService = {
   getTopArticles,
   getSearchedArticles,
-  getSelectedArticle,
 };
 
-const newsApiBaseUrl = `${ process.env.REACT_APP_NEWS_API_URL }`
-// const token = JSON.parse(localStorage.getItem('user')).token
-
-const testToken = "c706061a276e45388c2ba988a6e984f8"
+// base url includes version and ends in .../v2
+const BASE_URL = `${ process.env.REACT_APP_NEWS_API_URL }`;
+let user = JSON.parse(localStorage.getItem('user'));
+let url;
 
 function getTopArticles() {
-  const url = `${ newsApiBaseUrl }/top-headlines?apiKey=${ testToken }&sources=cnn`;
-  let articles = fetch(url)
-    .then(response => {
-      return response.json();
-    })
-    .then(articles => {
-      return articles;
-    });
-    return articles
+  url = `${ BASE_URL }/top-headlines?sources=cnn`;
+  return getArticlesFromApi(url);
 }
 
 function getSearchedArticles(phrase) {
-
+  url = `${ BASE_URL }/everything?q=${ phrase }`;
+  return getArticlesFromApi(url);
 }
 
-function getSelectedArticle(id) {
+function getArticlesFromApi(url) {
 
+  let articles = fetch(url, {
+    headers: {
+      'Authorization': `Bearer ${ user.token }`
+    }
+  })
+  .then(response => {
+    return response.json();
+  })
+  .then(articles => {
+    return articles;
+  })
+  return articles;
 }
