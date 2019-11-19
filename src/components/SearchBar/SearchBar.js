@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SearchIcon from './magnifying-glass.png';
 import './search-bar.css';
 
 class SearchBar extends Component {
@@ -19,7 +18,7 @@ class SearchBar extends Component {
 
   handleInputSubmit(e) {
     e.preventDefault()
-    console.log(this.state.searchPhrase);
+    this.props.submit(this.state.searchPhrase);
   }
 
   render() {
@@ -36,7 +35,6 @@ class SearchBar extends Component {
           className="search-btn"
           onClick={ this.handleInputSubmit }
         >
-          <img src={ SearchIcon }/>
         </button>
       </div>
     )
